@@ -15,7 +15,9 @@ There are no official videos showing how to install or use this tool. Scammers a
 
 ## 👾 Is it safe to use?
 
-Yes. This project is entirely open-source, allowing anyone to audit the code. It operates strictly locally, does not require internet access, and makes zero network requests. It simply adjusts local client settings to enhance your user experience.
+The patcher is open-source and its recommended **Activate Pro only** profile operates locally. Advanced features have a broader trust boundary: Remote Web Panel opens a service on your local network, and custom scripts execute with Wand's renderer and Node privileges. Review the source and build the executable from your own fork.
+
+For the smallest attack surface, leave **Activate WeMod Pro** enabled and keep every option under **Advanced options** disabled. Remote Web Panel, custom scripts, DevTools, and update suppression are not required to remove the local time limit.
 
 ## 💫 What features are improved?
 

@@ -23,7 +23,13 @@ namespace WandEnhancer.View.Popups
             _onApply = onApply;
             InitializeComponent();
             ScriptList.ItemsSource = _selectedScripts;
+            UpdateRemotePanelState();
             UpdateScriptsEmptyState();
+        }
+
+        private void OnRemoteWebPanelSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateRemotePanelState();
         }
 
         private void OnAddScriptClick(object sender, RoutedEventArgs e)
@@ -98,7 +104,9 @@ namespace WandEnhancer.View.Popups
             _onApply(new PatchConfig
             {
                 PatchTypes = result,
-                CustomScriptPaths = _selectedScripts.Select(script => script.FullPath).ToList(),
+                CustomScriptPaths = RemoteWebPanelPreviewBox.IsChecked == true
+                    ? _selectedScripts.Select(script => script.FullPath).ToList()
+                    : new List<string>(),
                 AutoApplyPatches = false
             });
         }
@@ -122,6 +130,14 @@ namespace WandEnhancer.View.Popups
         private void UpdateScriptsEmptyState()
         {
             NoScriptsText.Visibility = _selectedScripts.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void UpdateRemotePanelState()
+        {
+            if (CustomScriptsPanel != null)
+            {
+                CustomScriptsPanel.IsEnabled = RemoteWebPanelPreviewBox?.IsChecked == true;
+            }
         }
 
         private sealed class SelectedScript
